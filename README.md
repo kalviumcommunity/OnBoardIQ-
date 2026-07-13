@@ -87,7 +87,7 @@ Our Learning - Bringing onboarding data into one dashboard helps managers quickl
 
 ---
 
-## 8. Success Metrics
+## 8. Success Metrics (KPIs)
 - Reduce onboarding completion time by 20%.
 - Achieve 90% onboarding completion within the first 30 days.
 - Reduce repeated support tickets by 30%.
@@ -100,8 +100,8 @@ Our Learning - Bringing onboarding data into one dashboard helps managers quickl
 
 - **Programming Language:** Python 3.x
 - **Data Processing:** Pandas, NumPy
-- **Database:** SQLite
-- **SQL:** SQLite SQL
+- **Database:** PostgreSQL
+- **Business Intelligence:** PowerBI
 - **Dashboard:** Streamlit
 - **Visualization:** Plotly
 - **Data Formats:** CSV, JSON

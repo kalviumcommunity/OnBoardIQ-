@@ -98,7 +98,7 @@ Our Learning - Bringing onboarding data into one dashboard helps managers quickl
 
 ## 9. Tech Stack
 
-- **Programming Language:** Python 3.x
+- **Programming Language:** Python
 - **Data Processing:** Pandas, NumPy
 - **Database:** PostgreSQL
 - **Business Intelligence:** PowerBI

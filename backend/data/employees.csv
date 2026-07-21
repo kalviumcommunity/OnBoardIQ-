@@ -1,0 +1,26 @@
+emp_id,user_id,department_id,manager_id,team_lead_id,designation,joining_date,probation_end,onboarding_status
+1,1,1,,,CEO,2026-01-01,,Completed
+2,2,2,,,HR Executive,2026-02-01,2026-08-01,Completed
+3,3,2,,,HR Executive,2026-02-01,2026-08-01,Completed
+4,4,1,,,Manager,2026-02-15,2026-08-15,Completed
+5,5,2,,,Manager,2026-02-15,2026-08-15,Completed
+6,6,3,,,Manager,2026-02-15,2026-08-15,Completed
+7,7,4,,,Manager,2026-02-15,2026-08-15,Completed
+8,8,1,4,,Team Lead,2026-03-01,2026-09-01,Completed
+9,9,2,5,,Team Lead,2026-03-01,2026-09-01,Completed
+10,10,3,6,,Team Lead,2026-03-01,2026-09-01,Completed
+11,11,4,7,,Team Lead,2026-03-01,2026-09-01,Completed
+12,12,1,4,,Team Lead,2026-03-01,2026-09-01,Completed
+13,13,2,5,,Team Lead,2026-03-01,2026-09-01,Completed
+14,14,1,4,8,Software Engineer,2026-05-15,2026-11-11,In Progress
+15,15,2,5,9,Software Engineer,2026-05-16,2026-11-12,In Progress
+16,16,3,6,10,Software Engineer,2026-05-17,2026-11-13,Not Started
+17,17,4,7,11,Software Engineer,2026-05-18,2026-11-14,Completed
+18,18,1,4,12,Software Engineer,2026-05-19,2026-11-15,Completed
+19,19,2,5,13,Software Engineer,2026-05-20,2026-11-16,Completed
+20,20,1,4,8,Software Engineer,2026-05-21,2026-11-17,Not Started
+21,21,2,5,9,Software Engineer,2026-05-22,2026-11-18,In Progress
+22,22,3,6,10,Software Engineer,2026-05-23,2026-11-19,Not Started
+23,23,4,7,11,Software Engineer,2026-05-24,2026-11-20,Not Started
+24,24,1,4,12,Software Engineer,2026-05-25,2026-11-21,Completed
+25,25,2,5,13,Software Engineer,2026-05-26,2026-11-22,In Progress

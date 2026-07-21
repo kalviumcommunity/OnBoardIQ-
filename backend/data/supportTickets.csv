@@ -1,0 +1,31 @@
+ticket_id,employee_id,category,priority,status,assigned_to,created_at,resolved_at,title,description
+1,16,HR,Medium,In Progress,2,2026-07-01 09:00:00,,Issue 1,Sample support issue 1
+2,14,Hardware,Low,In Progress,2,2026-07-01 09:00:00,,Issue 2,Sample support issue 2
+3,17,HR,Low,Open,2,2026-07-01 09:00:00,,Issue 3,Sample support issue 3
+4,18,IT,High,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 4,Sample support issue 4
+5,19,Access,Low,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 5,Sample support issue 5
+6,18,Hardware,Low,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 6,Sample support issue 6
+7,23,IT,High,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 7,Sample support issue 7
+8,22,IT,Low,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 8,Sample support issue 8
+9,24,HR,Low,Open,2,2026-07-01 09:00:00,,Issue 9,Sample support issue 9
+10,23,HR,Low,Open,2,2026-07-01 09:00:00,,Issue 10,Sample support issue 10
+11,22,HR,Medium,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 11,Sample support issue 11
+12,24,IT,High,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 12,Sample support issue 12
+13,25,HR,Medium,In Progress,2,2026-07-01 09:00:00,,Issue 13,Sample support issue 13
+14,15,Hardware,High,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 14,Sample support issue 14
+15,20,IT,High,Open,2,2026-07-01 09:00:00,,Issue 15,Sample support issue 15
+16,21,Access,Low,Open,2,2026-07-01 09:00:00,,Issue 16,Sample support issue 16
+17,20,HR,High,In Progress,2,2026-07-01 09:00:00,,Issue 17,Sample support issue 17
+18,16,Access,Medium,In Progress,2,2026-07-01 09:00:00,,Issue 18,Sample support issue 18
+19,15,HR,High,In Progress,2,2026-07-01 09:00:00,,Issue 19,Sample support issue 19
+20,23,Access,Medium,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 20,Sample support issue 20
+21,25,IT,High,Open,2,2026-07-01 09:00:00,,Issue 21,Sample support issue 21
+22,16,IT,Medium,In Progress,2,2026-07-01 09:00:00,,Issue 22,Sample support issue 22
+23,22,Hardware,Low,Open,2,2026-07-01 09:00:00,,Issue 23,Sample support issue 23
+24,16,Hardware,High,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 24,Sample support issue 24
+25,21,Access,Low,Resolved,2,2026-07-01 09:00:00,2026-07-03 16:00:00,Issue 25,Sample support issue 25
+26,14,IT,Low,In Progress,2,2026-07-01 09:00:00,,Issue 26,Sample support issue 26
+27,19,IT,Medium,In Progress,2,2026-07-01 09:00:00,,Issue 27,Sample support issue 27
+28,19,HR,High,Open,2,2026-07-01 09:00:00,,Issue 28,Sample support issue 28
+29,16,IT,Medium,Open,2,2026-07-01 09:00:00,,Issue 29,Sample support issue 29
+30,17,HR,Medium,In Progress,2,2026-07-01 09:00:00,,Issue 30,Sample support issue 30

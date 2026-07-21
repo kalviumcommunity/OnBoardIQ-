@@ -1,0 +1,26 @@
+user_id,name,email,role,is_active
+1,Aarav Sharma,aarav.sharma@orbithq.com,Leadership,TRUE
+2,Priya Nair,priya.nair@orbithq.com,HR,TRUE
+3,Neha Reddy,neha.reddy@orbithq.com,HR,TRUE
+4,Rahul Verma,rahul.verma@orbithq.com,Manager,TRUE
+5,Karthik Rao,karthik.rao@orbithq.com,Manager,TRUE
+6,Vikram Singh,vikram.singh@orbithq.com,Manager,TRUE
+7,Anil Kumar,anil.kumar@orbithq.com,Manager,TRUE
+8,Sneha Reddy,sneha.reddy@orbithq.com,Team Lead,TRUE
+9,Meera Iyer,meera.iyer@orbithq.com,Team Lead,TRUE
+10,Rohit Das,rohit.das@orbithq.com,Team Lead,TRUE
+11,Nisha Patel,nisha.patel@orbithq.com,Team Lead,TRUE
+12,Akash Gupta,akash.gupta@orbithq.com,Team Lead,TRUE
+13,Divya Menon,divya.menon@orbithq.com,Team Lead,TRUE
+14,Rohan Gupta,rohan.gupta@orbithq.com,Employee,TRUE
+15,Ananya Das,ananya.das@orbithq.com,Employee,TRUE
+16,Arjun Nair,arjun.nair@orbithq.com,Employee,TRUE
+17,Kiran Rao,kiran.rao@orbithq.com,Employee,TRUE
+18,Pooja Sharma,pooja.sharma@orbithq.com,Employee,TRUE
+19,Harish Kumar,harish.kumar@orbithq.com,Employee,TRUE
+20,Deepika Joshi,deepika.joshi@orbithq.com,Employee,TRUE
+21,Varun Reddy,varun.reddy@orbithq.com,Employee,TRUE
+22,Ishita Bose,ishita.bose@orbithq.com,Employee,TRUE
+23,Manoj Pillai,manoj.pillai@orbithq.com,Employee,TRUE
+24,Keerthi Rao,keerthi.rao@orbithq.com,Employee,TRUE
+25,Sanjay Patel,sanjay.patel@orbithq.com,Employee,TRUE

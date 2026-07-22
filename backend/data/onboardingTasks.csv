@@ -1,49 +1,91 @@
-task_id,employee_id,task_name,assigned_by,due_date,status,completion_date
-1,14,Submit Documents,2,2026-06-18,In Progress,
-2,14,Email Setup,2,2026-06-14,In Progress,
-3,14,Laptop Collection,2,2026-06-20,Completed,2026-06-20
-4,14,HR Orientation,2,2026-06-14,Pending,
-5,15,Submit Documents,2,2026-06-08,Completed,2026-06-08
-6,15,Email Setup,2,2026-06-16,Completed,2026-06-16
-7,15,Laptop Collection,2,2026-06-03,Pending,
-8,15,HR Orientation,2,2026-06-14,In Progress,
-9,16,Submit Documents,2,2026-06-14,In Progress,
-10,16,Email Setup,2,2026-06-18,In Progress,
-11,16,Laptop Collection,2,2026-06-11,Completed,2026-06-11
-12,16,HR Orientation,2,2026-06-08,Pending,
-13,17,Submit Documents,2,2026-06-10,Completed,2026-06-10
-14,17,Email Setup,2,2026-06-13,Pending,
-15,17,Laptop Collection,2,2026-06-21,Completed,2026-06-21
-16,17,HR Orientation,2,2026-06-12,Completed,2026-06-12
-17,18,Submit Documents,2,2026-06-19,Pending,
-18,18,Email Setup,2,2026-06-03,In Progress,
-19,18,Laptop Collection,2,2026-06-15,In Progress,
-20,18,HR Orientation,2,2026-06-20,Completed,2026-06-20
-21,19,Submit Documents,2,2026-06-08,In Progress,
-22,19,Email Setup,2,2026-06-17,Completed,2026-06-17
-23,19,Laptop Collection,2,2026-06-13,Pending,
-24,19,HR Orientation,2,2026-06-17,In Progress,
-25,20,Submit Documents,2,2026-06-17,Pending,
-26,20,Email Setup,2,2026-06-09,In Progress,
-27,20,Laptop Collection,2,2026-06-13,In Progress,
-28,20,HR Orientation,2,2026-06-11,Completed,2026-06-11
-29,21,Submit Documents,2,2026-06-20,Completed,2026-06-20
-30,21,Email Setup,2,2026-06-17,In Progress,
-31,21,Laptop Collection,2,2026-06-09,Completed,2026-06-09
-32,21,HR Orientation,2,2026-06-20,In Progress,
-33,22,Submit Documents,2,2026-06-03,Completed,2026-06-03
-34,22,Email Setup,2,2026-06-15,Pending,
-35,22,Laptop Collection,2,2026-06-05,Completed,2026-06-05
-36,22,HR Orientation,2,2026-06-14,In Progress,
-37,23,Submit Documents,2,2026-06-06,In Progress,
-38,23,Email Setup,2,2026-06-02,Completed,2026-06-02
-39,23,Laptop Collection,2,2026-06-05,In Progress,
-40,23,HR Orientation,2,2026-06-07,Completed,2026-06-07
-41,24,Submit Documents,2,2026-06-11,Pending,
-42,24,Email Setup,2,2026-06-15,Pending,
-43,24,Laptop Collection,2,2026-06-08,Pending,
-44,24,HR Orientation,2,2026-06-17,In Progress,
-45,25,Submit Documents,2,2026-06-09,Completed,2026-06-09
-46,25,Email Setup,2,2026-06-21,Pending,
-47,25,Laptop Collection,2,2026-06-13,Pending,
-48,25,HR Orientation,2,2026-06-15,Pending,
+task_id,employee_id,assigned_by_user_id,task_name,description,status,due_date,completion_date
+1,1,2,Setup Email,Setup Email task,Pending,2026-02-06,
+2,1,2,Security Training,Security Training task,Pending,2026-02-06,
+3,1,2,Meet Manager,Meet Manager task,Pending,2026-02-06,
+4,2,2,Setup Email,Setup Email task,Pending,2026-02-07,
+5,2,2,Security Training,Security Training task,Completed,2026-02-07,2026-02-07
+6,2,2,Meet Manager,Meet Manager task,Pending,2026-02-07,
+7,3,2,Setup Email,Setup Email task,Completed,2026-02-08,2026-02-08
+8,3,2,Security Training,Security Training task,In Progress,2026-02-08,
+9,3,2,Meet Manager,Meet Manager task,In Progress,2026-02-08,
+10,4,2,Setup Email,Setup Email task,In Progress,2026-02-09,
+11,4,2,Security Training,Security Training task,Pending,2026-02-09,
+12,4,2,Meet Manager,Meet Manager task,Pending,2026-02-09,
+13,5,2,Setup Email,Setup Email task,Completed,2026-02-10,2026-02-10
+14,5,2,Security Training,Security Training task,Completed,2026-02-10,2026-02-10
+15,5,2,Meet Manager,Meet Manager task,In Progress,2026-02-10,
+16,6,2,Setup Email,Setup Email task,In Progress,2026-02-11,
+17,6,2,Security Training,Security Training task,Completed,2026-02-11,2026-02-11
+18,6,2,Meet Manager,Meet Manager task,Completed,2026-02-11,2026-02-11
+19,7,2,Setup Email,Setup Email task,Pending,2026-02-12,
+20,7,2,Security Training,Security Training task,Pending,2026-02-12,
+21,7,2,Meet Manager,Meet Manager task,Completed,2026-02-12,2026-02-12
+22,8,2,Setup Email,Setup Email task,Completed,2026-02-13,2026-02-13
+23,8,2,Security Training,Security Training task,Pending,2026-02-13,
+24,8,2,Meet Manager,Meet Manager task,Pending,2026-02-13,
+25,9,2,Setup Email,Setup Email task,Pending,2026-02-14,
+26,9,2,Security Training,Security Training task,Completed,2026-02-14,2026-02-14
+27,9,2,Meet Manager,Meet Manager task,Completed,2026-02-14,2026-02-14
+28,10,2,Setup Email,Setup Email task,Completed,2026-02-15,2026-02-15
+29,10,2,Security Training,Security Training task,Pending,2026-02-15,
+30,10,2,Meet Manager,Meet Manager task,In Progress,2026-02-15,
+31,11,2,Setup Email,Setup Email task,Pending,2026-02-16,
+32,11,2,Security Training,Security Training task,Completed,2026-02-16,2026-02-16
+33,11,2,Meet Manager,Meet Manager task,In Progress,2026-02-16,
+34,12,2,Setup Email,Setup Email task,Completed,2026-02-17,2026-02-17
+35,12,2,Security Training,Security Training task,Completed,2026-02-17,2026-02-17
+36,12,2,Meet Manager,Meet Manager task,Pending,2026-02-17,
+37,13,2,Setup Email,Setup Email task,In Progress,2026-02-18,
+38,13,2,Security Training,Security Training task,Pending,2026-02-18,
+39,13,2,Meet Manager,Meet Manager task,In Progress,2026-02-18,
+40,14,2,Setup Email,Setup Email task,In Progress,2026-02-19,
+41,14,2,Security Training,Security Training task,Completed,2026-02-19,2026-02-19
+42,14,2,Meet Manager,Meet Manager task,Completed,2026-02-19,2026-02-19
+43,15,2,Setup Email,Setup Email task,Pending,2026-02-20,
+44,15,2,Security Training,Security Training task,Completed,2026-02-20,2026-02-20
+45,15,2,Meet Manager,Meet Manager task,Pending,2026-02-20,
+46,16,2,Setup Email,Setup Email task,In Progress,2026-02-21,
+47,16,2,Security Training,Security Training task,In Progress,2026-02-21,
+48,16,2,Meet Manager,Meet Manager task,Pending,2026-02-21,
+49,17,2,Setup Email,Setup Email task,Pending,2026-02-22,
+50,17,2,Security Training,Security Training task,Completed,2026-02-22,2026-02-22
+51,17,2,Meet Manager,Meet Manager task,Pending,2026-02-22,
+52,18,2,Setup Email,Setup Email task,In Progress,2026-02-23,
+53,18,2,Security Training,Security Training task,Completed,2026-02-23,2026-02-23
+54,18,2,Meet Manager,Meet Manager task,Pending,2026-02-23,
+55,19,2,Setup Email,Setup Email task,In Progress,2026-02-24,
+56,19,2,Security Training,Security Training task,In Progress,2026-02-24,
+57,19,2,Meet Manager,Meet Manager task,In Progress,2026-02-24,
+58,20,2,Setup Email,Setup Email task,In Progress,2026-02-25,
+59,20,2,Security Training,Security Training task,In Progress,2026-02-25,
+60,20,2,Meet Manager,Meet Manager task,Pending,2026-02-25,
+61,21,2,Setup Email,Setup Email task,Completed,2026-02-26,2026-02-26
+62,21,2,Security Training,Security Training task,Completed,2026-02-26,2026-02-26
+63,21,2,Meet Manager,Meet Manager task,In Progress,2026-02-26,
+64,22,2,Setup Email,Setup Email task,Completed,2026-02-27,2026-02-27
+65,22,2,Security Training,Security Training task,In Progress,2026-02-27,
+66,22,2,Meet Manager,Meet Manager task,Completed,2026-02-27,2026-02-27
+67,23,2,Setup Email,Setup Email task,In Progress,2026-02-28,
+68,23,2,Security Training,Security Training task,Completed,2026-02-28,2026-02-28
+69,23,2,Meet Manager,Meet Manager task,Pending,2026-02-28,
+70,24,2,Setup Email,Setup Email task,Completed,2026-03-01,2026-03-01
+71,24,2,Security Training,Security Training task,Pending,2026-03-01,
+72,24,2,Meet Manager,Meet Manager task,In Progress,2026-03-01,
+73,25,2,Setup Email,Setup Email task,In Progress,2026-03-02,
+74,25,2,Security Training,Security Training task,In Progress,2026-03-02,
+75,25,2,Meet Manager,Meet Manager task,Pending,2026-03-02,
+76,26,2,Setup Email,Setup Email task,In Progress,2026-03-03,
+77,26,2,Security Training,Security Training task,Completed,2026-03-03,2026-03-03
+78,26,2,Meet Manager,Meet Manager task,Completed,2026-03-03,2026-03-03
+79,27,2,Setup Email,Setup Email task,In Progress,2026-03-04,
+80,27,2,Security Training,Security Training task,Pending,2026-03-04,
+81,27,2,Meet Manager,Meet Manager task,Pending,2026-03-04,
+82,28,2,Setup Email,Setup Email task,Pending,2026-03-05,
+83,28,2,Security Training,Security Training task,Pending,2026-03-05,
+84,28,2,Meet Manager,Meet Manager task,Completed,2026-03-05,2026-03-05
+85,29,2,Setup Email,Setup Email task,Completed,2026-03-06,2026-03-06
+86,29,2,Security Training,Security Training task,Pending,2026-03-06,
+87,29,2,Meet Manager,Meet Manager task,In Progress,2026-03-06,
+88,30,2,Setup Email,Setup Email task,Completed,2026-03-07,2026-03-07
+89,30,2,Security Training,Security Training task,Completed,2026-03-07,2026-03-07
+90,30,2,Meet Manager,Meet Manager task,In Progress,2026-03-07,

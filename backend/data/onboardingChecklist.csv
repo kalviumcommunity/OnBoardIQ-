@@ -1,0 +1,121 @@
+checklist_id,employee_id,title,description,status,due_date,completed_date
+1,1,Submit Documents,Submit Documents for onboarding,Pending,2026-02-02,
+2,1,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-02,2026-02-02
+3,1,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-02,2026-02-02
+4,1,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-02,2026-02-02
+5,2,Submit Documents,Submit Documents for onboarding,Completed,2026-02-03,2026-02-03
+6,2,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-03,
+7,2,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-03,
+8,2,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-03,2026-02-03
+9,3,Submit Documents,Submit Documents for onboarding,Pending,2026-02-04,
+10,3,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-04,
+11,3,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-04,2026-02-04
+12,3,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-04,2026-02-04
+13,4,Submit Documents,Submit Documents for onboarding,Pending,2026-02-05,
+14,4,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-05,2026-02-05
+15,4,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-05,
+16,4,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-05,
+17,5,Submit Documents,Submit Documents for onboarding,Completed,2026-02-06,2026-02-06
+18,5,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-06,2026-02-06
+19,5,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-06,
+20,5,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-06,2026-02-06
+21,6,Submit Documents,Submit Documents for onboarding,Completed,2026-02-07,2026-02-07
+22,6,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-07,
+23,6,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-07,
+24,6,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-07,2026-02-07
+25,7,Submit Documents,Submit Documents for onboarding,Completed,2026-02-08,2026-02-08
+26,7,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-08,
+27,7,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-08,2026-02-08
+28,7,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-08,
+29,8,Submit Documents,Submit Documents for onboarding,Pending,2026-02-09,
+30,8,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-09,2026-02-09
+31,8,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-09,
+32,8,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-09,2026-02-09
+33,9,Submit Documents,Submit Documents for onboarding,Pending,2026-02-10,
+34,9,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-10,
+35,9,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-10,2026-02-10
+36,9,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-10,
+37,10,Submit Documents,Submit Documents for onboarding,Pending,2026-02-11,
+38,10,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-11,
+39,10,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-11,2026-02-11
+40,10,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-11,
+41,11,Submit Documents,Submit Documents for onboarding,Completed,2026-02-12,2026-02-12
+42,11,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-12,2026-02-12
+43,11,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-12,
+44,11,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-12,
+45,12,Submit Documents,Submit Documents for onboarding,Pending,2026-02-13,
+46,12,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-13,2026-02-13
+47,12,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-13,
+48,12,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-13,
+49,13,Submit Documents,Submit Documents for onboarding,Completed,2026-02-14,2026-02-14
+50,13,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-14,
+51,13,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-14,
+52,13,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-14,
+53,14,Submit Documents,Submit Documents for onboarding,Completed,2026-02-15,2026-02-15
+54,14,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-15,2026-02-15
+55,14,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-15,
+56,14,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-15,
+57,15,Submit Documents,Submit Documents for onboarding,Pending,2026-02-16,
+58,15,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-16,
+59,15,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-16,2026-02-16
+60,15,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-16,2026-02-16
+61,16,Submit Documents,Submit Documents for onboarding,Pending,2026-02-17,
+62,16,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-17,2026-02-17
+63,16,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-17,
+64,16,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-17,2026-02-17
+65,17,Submit Documents,Submit Documents for onboarding,Completed,2026-02-18,2026-02-18
+66,17,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-18,
+67,17,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-18,
+68,17,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-18,2026-02-18
+69,18,Submit Documents,Submit Documents for onboarding,Completed,2026-02-19,2026-02-19
+70,18,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-19,2026-02-19
+71,18,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-19,2026-02-19
+72,18,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-19,
+73,19,Submit Documents,Submit Documents for onboarding,Completed,2026-02-20,2026-02-20
+74,19,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-20,2026-02-20
+75,19,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-20,
+76,19,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-20,
+77,20,Submit Documents,Submit Documents for onboarding,Completed,2026-02-21,2026-02-21
+78,20,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-21,2026-02-21
+79,20,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-21,2026-02-21
+80,20,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-21,
+81,21,Submit Documents,Submit Documents for onboarding,Pending,2026-02-22,
+82,21,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-22,
+83,21,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-22,
+84,21,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-22,2026-02-22
+85,22,Submit Documents,Submit Documents for onboarding,Pending,2026-02-23,
+86,22,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-23,2026-02-23
+87,22,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-23,
+88,22,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-23,2026-02-23
+89,23,Submit Documents,Submit Documents for onboarding,Pending,2026-02-24,
+90,23,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-24,2026-02-24
+91,23,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-24,
+92,23,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-24,
+93,24,Submit Documents,Submit Documents for onboarding,Completed,2026-02-25,2026-02-25
+94,24,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-25,2026-02-25
+95,24,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-25,2026-02-25
+96,24,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-25,2026-02-25
+97,25,Submit Documents,Submit Documents for onboarding,Completed,2026-02-26,2026-02-26
+98,25,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-26,2026-02-26
+99,25,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-26,2026-02-26
+100,25,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-26,2026-02-26
+101,26,Submit Documents,Submit Documents for onboarding,Pending,2026-02-27,
+102,26,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-02-27,2026-02-27
+103,26,IT Account Setup,IT Account Setup for onboarding,Completed,2026-02-27,2026-02-27
+104,26,Laptop Collection,Laptop Collection for onboarding,Completed,2026-02-27,2026-02-27
+105,27,Submit Documents,Submit Documents for onboarding,Pending,2026-02-28,
+106,27,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-02-28,
+107,27,IT Account Setup,IT Account Setup for onboarding,Pending,2026-02-28,
+108,27,Laptop Collection,Laptop Collection for onboarding,Pending,2026-02-28,
+109,28,Submit Documents,Submit Documents for onboarding,Completed,2026-03-01,2026-03-01
+110,28,Complete HR Forms,Complete HR Forms for onboarding,Completed,2026-03-01,2026-03-01
+111,28,IT Account Setup,IT Account Setup for onboarding,Pending,2026-03-01,
+112,28,Laptop Collection,Laptop Collection for onboarding,Completed,2026-03-01,2026-03-01
+113,29,Submit Documents,Submit Documents for onboarding,Completed,2026-03-02,2026-03-02
+114,29,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-03-02,
+115,29,IT Account Setup,IT Account Setup for onboarding,Pending,2026-03-02,
+116,29,Laptop Collection,Laptop Collection for onboarding,Pending,2026-03-02,
+117,30,Submit Documents,Submit Documents for onboarding,Pending,2026-03-03,
+118,30,Complete HR Forms,Complete HR Forms for onboarding,Pending,2026-03-03,
+119,30,IT Account Setup,IT Account Setup for onboarding,Pending,2026-03-03,
+120,30,Laptop Collection,Laptop Collection for onboarding,Completed,2026-03-03,2026-03-03

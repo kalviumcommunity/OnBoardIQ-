@@ -1,26 +1,31 @@
-emp_id,user_id,department_id,manager_id,team_lead_id,designation,joining_date,probation_end,onboarding_status
-1,1,1,,,CEO,2026-01-01,,Completed
-2,2,2,,,HR Executive,2026-02-01,2026-08-01,Completed
-3,3,2,,,HR Executive,2026-02-01,2026-08-01,Completed
-4,4,1,,,Manager,2026-02-15,2026-08-15,Completed
-5,5,2,,,Manager,2026-02-15,2026-08-15,Completed
-6,6,3,,,Manager,2026-02-15,2026-08-15,Completed
-7,7,4,,,Manager,2026-02-15,2026-08-15,Completed
-8,8,1,4,,Team Lead,2026-03-01,2026-09-01,Completed
-9,9,2,5,,Team Lead,2026-03-01,2026-09-01,Completed
-10,10,3,6,,Team Lead,2026-03-01,2026-09-01,Completed
-11,11,4,7,,Team Lead,2026-03-01,2026-09-01,Completed
-12,12,1,4,,Team Lead,2026-03-01,2026-09-01,Completed
-13,13,2,5,,Team Lead,2026-03-01,2026-09-01,Completed
-14,14,1,4,8,Software Engineer,2026-05-15,2026-11-11,In Progress
-15,15,2,5,9,Software Engineer,2026-05-16,2026-11-12,In Progress
-16,16,3,6,10,Software Engineer,2026-05-17,2026-11-13,Not Started
-17,17,4,7,11,Software Engineer,2026-05-18,2026-11-14,Completed
-18,18,1,4,12,Software Engineer,2026-05-19,2026-11-15,Completed
-19,19,2,5,13,Software Engineer,2026-05-20,2026-11-16,Completed
-20,20,1,4,8,Software Engineer,2026-05-21,2026-11-17,Not Started
-21,21,2,5,9,Software Engineer,2026-05-22,2026-11-18,In Progress
-22,22,3,6,10,Software Engineer,2026-05-23,2026-11-19,Not Started
-23,23,4,7,11,Software Engineer,2026-05-24,2026-11-20,Not Started
-24,24,1,4,12,Software Engineer,2026-05-25,2026-11-21,Completed
-25,25,2,5,13,Software Engineer,2026-05-26,2026-11-22,In Progress
+emp_id,user_id,department_id,manager_id,team_lead_id,designation,joining_date,probation_end_date,employment_type,onboarding_status
+1,1,1,,,Administrator,2026-01-06,2026-07-05,Contract,Completed
+2,2,1,1,,HR Executive,2026-01-11,2026-07-10,Full-Time,Pending
+3,3,2,1,,Manager,2026-01-16,2026-07-15,Contract,In Progress
+4,4,3,1,,Manager,2026-01-21,2026-07-20,Contract,Completed
+5,5,4,1,,Manager,2026-01-26,2026-07-25,Intern,Pending
+6,6,5,1,,Manager,2026-01-31,2026-07-30,Part-Time,In Progress
+7,7,1,3,3,Software Engineer,2026-02-05,2026-08-04,Full-Time,In Progress
+8,8,2,4,4,Finance Analyst,2026-02-10,2026-08-09,Contract,Completed
+9,9,3,5,5,Software Engineer,2026-02-15,2026-08-14,Contract,Completed
+10,10,2,6,6,Intern,2026-02-20,2026-08-19,Intern,Completed
+11,11,2,2,2,Finance Analyst,2026-02-25,2026-08-24,Contract,Completed
+12,12,6,3,3,Finance Analyst,2026-03-02,2026-08-29,Part-Time,In Progress
+13,13,2,4,4,Sales Executive,2026-03-07,2026-09-03,Contract,Completed
+14,14,3,5,5,Software Engineer,2026-03-12,2026-09-08,Part-Time,In Progress
+15,15,1,6,6,QA Engineer,2026-03-17,2026-09-13,Intern,Pending
+16,16,1,2,2,Intern,2026-03-22,2026-09-18,Full-Time,Completed
+17,17,2,3,3,Product Manager,2026-03-27,2026-09-23,Part-Time,Completed
+18,18,6,4,4,Intern,2026-04-01,2026-09-28,Full-Time,Pending
+19,19,2,5,5,Sales Executive,2026-04-06,2026-10-03,Full-Time,Completed
+20,20,1,6,6,Finance Analyst,2026-04-11,2026-10-08,Full-Time,In Progress
+21,21,4,2,2,Sales Executive,2026-04-16,2026-10-13,Full-Time,In Progress
+22,22,1,3,3,QA Engineer,2026-04-21,2026-10-18,Full-Time,In Progress
+23,23,5,4,4,Sales Executive,2026-04-26,2026-10-23,Full-Time,Completed
+24,24,5,5,5,Product Manager,2026-05-01,2026-10-28,Part-Time,Completed
+25,25,2,6,6,Product Manager,2026-05-06,2026-11-02,Intern,Pending
+26,26,4,2,2,Intern,2026-05-11,2026-11-07,Intern,Pending
+27,27,3,3,3,Sales Executive,2026-05-16,2026-11-12,Part-Time,Completed
+28,28,4,4,4,Product Manager,2026-05-21,2026-11-17,Intern,In Progress
+29,29,4,5,5,Sales Executive,2026-05-26,2026-11-22,Part-Time,Completed
+30,30,2,6,6,QA Engineer,2026-05-31,2026-11-27,Full-Time,Pending

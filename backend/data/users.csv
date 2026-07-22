@@ -1,26 +1,31 @@
-user_id,name,email,role,is_active
-1,Aarav Sharma,aarav.sharma@orbithq.com,Leadership,TRUE
-2,Priya Nair,priya.nair@orbithq.com,HR,TRUE
-3,Neha Reddy,neha.reddy@orbithq.com,HR,TRUE
-4,Rahul Verma,rahul.verma@orbithq.com,Manager,TRUE
-5,Karthik Rao,karthik.rao@orbithq.com,Manager,TRUE
-6,Vikram Singh,vikram.singh@orbithq.com,Manager,TRUE
-7,Anil Kumar,anil.kumar@orbithq.com,Manager,TRUE
-8,Sneha Reddy,sneha.reddy@orbithq.com,Team Lead,TRUE
-9,Meera Iyer,meera.iyer@orbithq.com,Team Lead,TRUE
-10,Rohit Das,rohit.das@orbithq.com,Team Lead,TRUE
-11,Nisha Patel,nisha.patel@orbithq.com,Team Lead,TRUE
-12,Akash Gupta,akash.gupta@orbithq.com,Team Lead,TRUE
-13,Divya Menon,divya.menon@orbithq.com,Team Lead,TRUE
-14,Rohan Gupta,rohan.gupta@orbithq.com,Employee,TRUE
-15,Ananya Das,ananya.das@orbithq.com,Employee,TRUE
-16,Arjun Nair,arjun.nair@orbithq.com,Employee,TRUE
-17,Kiran Rao,kiran.rao@orbithq.com,Employee,TRUE
-18,Pooja Sharma,pooja.sharma@orbithq.com,Employee,TRUE
-19,Harish Kumar,harish.kumar@orbithq.com,Employee,TRUE
-20,Deepika Joshi,deepika.joshi@orbithq.com,Employee,TRUE
-21,Varun Reddy,varun.reddy@orbithq.com,Employee,TRUE
-22,Ishita Bose,ishita.bose@orbithq.com,Employee,TRUE
-23,Manoj Pillai,manoj.pillai@orbithq.com,Employee,TRUE
-24,Keerthi Rao,keerthi.rao@orbithq.com,Employee,TRUE
-25,Sanjay Patel,sanjay.patel@orbithq.com,Employee,TRUE
+user_id,name,email,password_hash,role,contact_no,is_active,created_at,last_login
+1,User 1,user1@orbithq.com,hashed_password,Admin,9876541001,TRUE,2026-01-02 9:00:00,2026-04-22 9:00:00
+2,User 2,user2@orbithq.com,hashed_password,HR,9876541002,TRUE,2026-01-03 9:00:00,2026-06-17 9:00:00
+3,User 3,user3@orbithq.com,hashed_password,Manager,9876541003,TRUE,2026-01-04 9:00:00,2026-04-04 9:00:00
+4,User 4,user4@orbithq.com,hashed_password,Employee,9876541004,TRUE,2026-01-05 9:00:00,2026-03-13 9:00:00
+5,User 5,user5@orbithq.com,hashed_password,Employee,9876541005,TRUE,2026-01-06 9:00:00,2026-06-26 9:00:00
+6,User 6,user6@orbithq.com,hashed_password,Employee,9876541006,TRUE,2026-01-07 9:00:00,2026-05-28 9:00:00
+7,User 7,user7@orbithq.com,hashed_password,Employee,9876541007,TRUE,2026-01-08 9:00:00,2026-03-23 9:00:00
+8,User 8,user8@orbithq.com,hashed_password,Employee,9876541008,TRUE,2026-01-09 9:00:00,2026-05-19 9:00:00
+9,User 9,user9@orbithq.com,hashed_password,Employee,9876541009,TRUE,2026-01-10 9:00:00,2026-06-13 9:00:00
+10,User 10,user10@orbithq.com,hashed_password,Employee,9876541010,TRUE,2026-01-11 9:00:00,2026-05-26 9:00:00
+11,User 11,user11@orbithq.com,hashed_password,Employee,9876541011,TRUE,2026-01-12 9:00:00,2026-04-27 9:00:00
+12,User 12,user12@orbithq.com,hashed_password,Employee,9876541012,TRUE,2026-01-13 9:00:00,2026-01-21 9:00:00
+13,User 13,user13@orbithq.com,hashed_password,Employee,9876541013,TRUE,2026-01-14 9:00:00,2026-01-27 9:00:00
+14,User 14,user14@orbithq.com,hashed_password,Employee,9876541014,TRUE,2026-01-15 9:00:00,2026-06-11 9:00:00
+15,User 15,user15@orbithq.com,hashed_password,Employee,9876541015,TRUE,2026-01-16 9:00:00,2026-04-30 9:00:00
+16,User 16,user16@orbithq.com,hashed_password,Employee,9876541016,TRUE,2026-01-17 9:00:00,2026-06-30 9:00:00
+17,User 17,user17@orbithq.com,hashed_password,Employee,9876541017,TRUE,2026-01-18 9:00:00,2026-06-19 9:00:00
+18,User 18,user18@orbithq.com,hashed_password,Employee,9876541018,TRUE,2026-01-19 9:00:00,2026-03-29 9:00:00
+19,User 19,user19@orbithq.com,hashed_password,Employee,9876541019,TRUE,2026-01-20 9:00:00,2026-05-05 9:00:00
+20,User 20,user20@orbithq.com,hashed_password,Employee,9876541020,TRUE,2026-01-21 9:00:00,2026-02-06 9:00:00
+21,User 21,user21@orbithq.com,hashed_password,Employee,9876541021,TRUE,2026-01-22 9:00:00,2026-04-25 9:00:00
+22,User 22,user22@orbithq.com,hashed_password,Employee,9876541022,TRUE,2026-01-23 9:00:00,2026-05-18 9:00:00
+23,User 23,user23@orbithq.com,hashed_password,Employee,9876541023,TRUE,2026-01-24 9:00:00,2026-04-10 9:00:00
+24,User 24,user24@orbithq.com,hashed_password,Employee,9876541024,TRUE,2026-01-25 9:00:00,2026-07-23 9:00:00
+25,User 25,user25@orbithq.com,hashed_password,Employee,9876541025,TRUE,2026-01-26 9:00:00,2026-04-14 9:00:00
+26,User 26,user26@orbithq.com,hashed_password,Employee,9876541026,TRUE,2026-01-27 9:00:00,2026-05-22 9:00:00
+27,User 27,user27@orbithq.com,hashed_password,Employee,9876541027,TRUE,2026-01-28 9:00:00,2026-02-22 9:00:00
+28,User 28,user28@orbithq.com,hashed_password,Employee,9876541028,TRUE,2026-01-29 9:00:00,2026-05-20 9:00:00
+29,User 29,user29@orbithq.com,hashed_password,Employee,9876541029,TRUE,2026-01-30 9:00:00,2026-03-19 9:00:00
+30,User 30,user30@orbithq.com,hashed_password,Employee,9876541030,TRUE,2026-01-31 9:00:00,2026-07-04 9:00:00

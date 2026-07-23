@@ -1,6 +1,0 @@
-EmployeeID,Name,Email,Department,Manager,JoiningDate,Progress,Status
-1,Rahul,rahul@onboardiq.com,Engineering,Alice,12-Oct-2024,85,Active
-2,Priya,priya@onboardiq.com,HR,Bob,15-Oct-2024,42,Onboarding
-3,Arjun,arjun@onboardiq.com,Sales,Charlie,20-Oct-2024,15,Attention
-4,Sneha,sneha@onboardiq.com,Marketing,David,08-Oct-2024,100,Active
-5,Karan,karan@onboardiq.com,Finance,Eva,18-Oct-2024,65,Onboarding

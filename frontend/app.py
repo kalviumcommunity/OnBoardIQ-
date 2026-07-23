@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import runpy
+import os
 
 st.set_page_config(
     page_title="OnboardIQ",
@@ -8,6 +9,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+BASE_DIR = os.path.dirname(__file__)
+PAGES_DIR = os.path.join(BASE_DIR, "pages")
 
 # ---------------- CSS ----------------
 
@@ -18,14 +22,6 @@ st.markdown("""
 [data-testid="stSidebarNav"]{
     display:none;
 }
-
-/* Sidebar */
-st.set_page_config(
-    page_title="OnboardIQ",
-    page_icon="🚀",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 /* Sidebar padding */
 [data-testid="stSidebar"] > div:first-child{
@@ -141,22 +137,22 @@ with st.sidebar:
 # ---------------- PAGE ROUTING ----------------
 
 if selected == "Dashboard":
-    runpy.run_path("pages/Dashboard.py")
+    runpy.run_path(os.path.join(PAGES_DIR, "Dashboard.py"))
 
 elif selected == "Employees":
-    runpy.run_path("pages/Employees.py")
+    runpy.run_path(os.path.join(PAGES_DIR, "Employees.py"))
 
 elif selected == "Onboarding":
-    runpy.run_path("pages/Onboarding.py")
+    runpy.run_path(os.path.join(PAGES_DIR, "Onboarding.py"))
 
 elif selected == "Tool Usage":
-    runpy.run_path("pages/Tool_Usage.py")
+    runpy.run_path(os.path.join(PAGES_DIR, "Tool_Usage.py"))
 
 elif selected == "Support Tickets":
-    runpy.run_path("pages/Support_Tickets.py")
+    runpy.run_path(os.path.join(PAGES_DIR, "Support_Tickets.py"))
 
 elif selected == "Analytics":
-    runpy.run_path("pages/Analytics.py")
+    runpy.run_path(os.path.join(PAGES_DIR, "Analytics.py"))
 
 elif selected == "Settings":
     st.title("⚙️ Settings")

@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
+from backend.database.database_utils import fetch_data
 
 st.set_page_config(
     page_title="Dashboard",
@@ -143,24 +144,81 @@ with right:
 
 st.write("")
 
+
+# ---------------- DATABASE ----------------
+
+# Total Employees
+total_df = fetch_data("""
+SELECT COUNT(*) AS total_employees
+FROM employees;
+""")
+
+# Onboarding Completion
+completion_df = fetch_data("""
+SELECT ROUND(
+    COUNT(*) FILTER (WHERE onboarding_status = 'Completed') * 100.0 /
+    COUNT(*),
+    1
+) AS completion_rate
+FROM employees;
+""")
+
+# Open Support Tickets
+tickets_df = fetch_data("""
+SELECT COUNT(*) AS open_tickets
+FROM support_tickets
+WHERE status IN ('Open', 'In Progress');
+""")
+
+# Tool Adoption Rate
+tool_df = fetch_data("""
+SELECT ROUND(
+    COUNT(DISTINCT employee_id) * 100.0 /
+    (SELECT COUNT(*) FROM employees),
+    1
+) AS tool_adoption_rate
+FROM tool_usage;
+""")
+
+# Extract values
+total_employees = int(total_df.iloc[0]["total_employees"])
+completion_rate = float(completion_df.iloc[0]["completion_rate"])
+open_tickets = int(tickets_df.iloc[0]["open_tickets"])
+tool_adoption_rate = float(tool_df.iloc[0]["tool_adoption_rate"])
+
 # ---------------- KPI ----------------
 
-c1,c2,c3,c4,c5 = st.columns(5)
+c1, c2, c3, c4, c5 = st.columns(5)
 
 with c1:
-    st.metric("TOTAL EMPLOYEES","248","+12%")
+    st.metric(
+        "TOTAL EMPLOYEES",
+        total_employees
+    )
 
 with c2:
-    st.metric("ONBOARDING\nCOMPLETION","87%","+3%")
+    st.metric(
+        "ONBOARDING\nCOMPLETION",
+        f"{completion_rate}%"
+    )
 
 with c3:
-    st.metric("AVG. COMPLETION\nTIME","17d","-2d")
+    st.metric(
+        "AVG. COMPLETION\nTIME",
+        "17 Days"
+    )
 
 with c4:
-    st.metric("OPEN SUPPORT\nTICKETS","19","-4")
+    st.metric(
+        "OPEN SUPPORT\nTICKETS",
+        open_tickets
+    )
 
 with c5:
-    st.metric("TOOL ADOPTION\nRATE","82%","+5%")
+    st.metric(
+        "TOOL ADOPTION\nRATE",
+        f"{tool_adoption_rate}%"
+    )
 
 st.write("")
 

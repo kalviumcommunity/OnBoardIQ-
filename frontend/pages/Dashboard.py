@@ -186,6 +186,81 @@ completion_rate = float(completion_df.iloc[0]["completion_rate"])
 open_tickets = int(tickets_df.iloc[0]["open_tickets"])
 tool_adoption_rate = float(tool_df.iloc[0]["tool_adoption_rate"])
 
+# Completed Employees
+completed_df = fetch_data("""
+SELECT COUNT(*) AS completed
+FROM employees
+WHERE onboarding_status = 'Completed';
+""")
+
+# Pending Employees
+pending_df = fetch_data("""
+SELECT COUNT(*) AS pending
+FROM employees
+WHERE onboarding_status <> 'Completed';
+""")
+
+completed = int(completed_df.iloc[0]["completed"])
+pending = int(pending_df.iloc[0]["pending"])
+
+department_df = fetch_data("""
+SELECT
+    d.dept_name AS "Department",
+    ROUND(
+        COUNT(*) FILTER (WHERE e.onboarding_status = 'Completed') * 100.0 /
+        COUNT(*),
+        1
+    ) AS "Completion"
+FROM departments d
+JOIN employees e
+    ON d.dept_id = e.department_id
+GROUP BY d.dept_name
+ORDER BY "Completion" DESC;
+""")
+
+
+tool_usage_df = fetch_data("""
+SELECT
+    tool_name AS "Tool",
+    COUNT(*) AS "Usage"
+FROM tool_usage
+GROUP BY tool_name
+ORDER BY "Usage" DESC;
+""")
+
+tickets_df = fetch_data("""
+SELECT
+    u.name AS "Employee",
+    s.category AS "Category",
+    s.priority AS "Priority",
+    s.status AS "Status",
+    CASE
+        WHEN s.resolved_at IS NOT NULL THEN
+            CONCAT(
+                ROUND(EXTRACT(EPOCH FROM (s.resolved_at - s.created_at))/3600,1),
+                ' hrs'
+            )
+        ELSE 'Pending'
+    END AS "Resolution Time"
+FROM support_tickets s
+JOIN employees e
+    ON s.employee_id = e.emp_id
+JOIN users u
+    ON e.user_id = u.user_id
+ORDER BY s.created_at DESC
+LIMIT 10;
+""")
+
+
+task_status_df = fetch_data("""
+SELECT
+    status AS "Status",
+    COUNT(*) AS "Count"
+FROM onboarding_tasks
+GROUP BY status
+ORDER BY "Count" DESC;
+""")
+
 # ---------------- KPI ----------------
 
 c1, c2, c3, c4, c5 = st.columns(5)
@@ -234,7 +309,7 @@ with left:
 
     fig = go.Figure(
         go.Pie(
-            values=[87,13],
+            values=[completed, pending],
             hole=0.78,
             marker_colors=["#2563EB","#E5E7EB"],
             textinfo="none"
@@ -246,7 +321,7 @@ with left:
         margin=dict(t=20,b=20,l=20,r=20),
         annotations=[
             dict(
-                text="<b style='font-size:52px'>87%</b><br><span style='font-size:24px'>Completion</span>",
+                text=f"<b style='font-size:52px'>{completion_rate}%</b><br><span style='font-size:24px'>Completion</span>",
                 showarrow=False
             )
         ],
@@ -261,20 +336,14 @@ with left:
 
     a,b=st.columns(2)
 
-    with a:
-        st.metric("Completed","216")
-
-    with b:
-        st.metric("Pending","32")
+    st.metric("Completed", completed)
+    st.metric("Pending", pending)
 
 # -------- Department Chart --------
 
 with right:
 
-    dept=pd.DataFrame({
-        "Department":["Engineering","HR","Marketing","Finance","Sales"],
-        "Completion":[94,82,76,91,68]
-    })
+    dept = department_df
 
     fig=px.bar(
         dept,
@@ -327,24 +396,7 @@ left, right = st.columns(2)
 
 with left:
 
-    tools = pd.DataFrame({
-        "Tool": [
-            "Slack",
-            "Jira",
-            "GitHub",
-            "Confluence",
-            "Google",
-            "Notion"
-        ],
-        "Usage": [
-            88,
-            75,
-            91,
-            67,
-            84,
-            61
-        ]
-    })
+    tools = tool_usage_df
 
     fig = px.bar(
         tools,
@@ -388,64 +440,36 @@ with left:
         use_container_width=True
     )
 
-# -------- Employee Productivity --------
+# -------- Task Completion Status --------
 
 with right:
 
-    months = [
-        "Jan",
-        "Mar",
-        "May",
-        "Jul",
-        "Sep",
-        "Nov"
-    ]
+    fig = px.bar(
+        task_status_df,
+        x="Status",
+        y="Count",
+        color="Status",
+        text="Count"
+    )
 
-    productivity = [
-        35,
-        55,
-        48,
-        82,
-        36,
-        78
-    ]
-
-    fig = go.Figure()
-
-    fig.add_trace(
-        go.Scatter(
-            x=months,
-            y=productivity,
-            mode="lines+markers",
-            line=dict(
-                color="#2563EB",
-                width=5
-            ),
-            marker=dict(
-                size=10
-            ),
-            fill="tozeroy"
-        )
+    fig.update_traces(
+        textposition="outside",
+        textfont_size=20
     )
 
     fig.update_layout(
-        title="Employee Productivity",
+        title="Task Completion Status",
         title_font=dict(
             size=36,
             family="Arial Black",
             color="#111827"
         ),
         height=450,
+        showlegend=False,
         font=dict(
             family="Arial Black",
             size=22,
             color="#111827"
-        ),
-        xaxis=dict(
-            tickfont=dict(size=22)
-        ),
-        yaxis=dict(
-            tickfont=dict(size=22)
         )
     )
 
@@ -458,44 +482,7 @@ with right:
 
 st.markdown("## Recent Support Tickets")
 
-tickets = pd.DataFrame({
-
-    "Employee": [
-        "Alex Chen",
-        "Mia Thompson",
-        "David Wilson",
-        "Elena Rodriguez"
-    ],
-
-    "Category": [
-        "IT Setup",
-        "Benefits",
-        "Security Policy",
-        "Tool Access"
-    ],
-
-    "Priority": [
-        "HIGH",
-        "MEDIUM",
-        "CRITICAL",
-        "LOW"
-    ],
-
-    "Status": [
-        "In Progress",
-        "Resolved",
-        "Pending",
-        "Resolved"
-    ],
-
-    "Resolution Time": [
-        "2.5h",
-        "18.0h",
-        "0.5h",
-        "4.2h"
-    ]
-
-})
+tickets = tickets_df
 
 styled_table = (
     tickets.style

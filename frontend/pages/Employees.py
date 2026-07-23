@@ -80,7 +80,7 @@ input{
 
 # ---------------- Load Data ----------------
 
-employees = pd.read_csv("data/employees.csv")
+employees = pd.read_csv("backend/data/employees.csv")
 
 # ---------------- Header ----------------
 

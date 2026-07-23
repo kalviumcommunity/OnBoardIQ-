@@ -1,6 +1,5 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
+from backend.database.database_utils import fetch_data
 
 st.set_page_config(
     page_title="Employees",
@@ -80,7 +79,25 @@ input{
 
 # ---------------- Load Data ----------------
 
-employees = pd.read_csv("data/employees.csv")
+employees = fetch_data("""
+SELECT
+    e.emp_id,
+    u.name,
+    d.dept_name AS department,
+    m.name AS manager,
+    e.designation,
+    e.employment_type,
+    e.onboarding_status
+FROM employees e
+LEFT JOIN users u
+ON e.user_id = u.user_id
+LEFT JOIN departments d
+ON e.department_id = d.dept_id
+LEFT JOIN employees me
+ON e.manager_id = me.emp_id
+LEFT JOIN users m
+ON me.user_id = m.user_id;
+""")
 
 # ---------------- Header ----------------
 
@@ -101,7 +118,8 @@ with col1:
 
 with col2:
     departments = ["All"] + sorted(
-        employees["Department"].unique().tolist()
+        employees["department"].dropna().unique().tolist()
+
     )
 
     selected_department = st.selectbox(
@@ -113,15 +131,41 @@ filtered = employees.copy()
 
 if search:
     filtered = filtered[
-        filtered["Name"].str.contains(search, case=False)
+        filtered["name"].str.contains(search, case=False)
     ]
 
 if selected_department != "All":
     filtered = filtered[
-        filtered["Department"] == selected_department
+        filtered["department"] == selected_department
     ]
 
 st.divider()
+
+# ---------------- DATABASE ----------------
+
+# Total Employees
+total_df = fetch_data("""
+SELECT COUNT(*) AS total_employees
+FROM employees;
+""")
+
+# Total Departments
+department_df = fetch_data("""
+SELECT COUNT(*) AS total_departments
+FROM departments;
+""")
+
+# Total Managers
+manager_df = fetch_data("""
+SELECT COUNT(DISTINCT manager_id) AS total_managers
+FROM employees
+WHERE manager_id IS NOT NULL;
+""")
+
+# Extract values
+total_employees = int(total_df.iloc[0]["total_employees"])
+total_departments = int(department_df.iloc[0]["total_departments"])
+total_managers = int(manager_df.iloc[0]["total_managers"])
 
 # ---------------- KPI Cards ----------------
 
@@ -130,19 +174,19 @@ c1, c2, c3 = st.columns(3)
 with c1:
     st.metric(
         "👥 Total Employees",
-        len(filtered)
+        total_employees
     )
 
 with c2:
     st.metric(
         "🏢 Departments",
-        filtered["Department"].nunique()
+        total_departments
     )
 
 with c3:
     st.metric(
         "👨‍💼 Managers",
-        filtered["Manager"].nunique()
+        total_managers
     )
 
 st.divider()
@@ -155,73 +199,7 @@ st.dataframe(
     filtered,
     use_container_width=True,
     hide_index=True,
-    height=350
+    height=450
 )
 
 st.divider()
-
-# ---------------- Charts ----------------
-
-left, right = st.columns(2)
-
-with left:
-
-    st.subheader("📊 Employees by Department")
-
-    dept = (
-        filtered["Department"]
-        .value_counts()
-        .reset_index()
-    )
-
-    dept.columns = [
-        "Department",
-        "Employees"
-    ]
-
-    fig = px.bar(
-        dept,
-        x="Department",
-        y="Employees",
-        color="Department",
-        text="Employees"
-    )
-
-    fig.update_layout(
-        title="Department-wise Employees",
-        title_font_size=26,
-        font=dict(size=18),
-        height=500
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
-
-with right:
-
-    st.subheader("🥧 Department Distribution")
-
-    fig = px.pie(
-        filtered,
-        names="Department",
-        hole=0.55
-    )
-
-    fig.update_traces(
-        textinfo="percent+label",
-        textfont_size=18
-    )
-
-    fig.update_layout(
-        title="Department Distribution",
-        title_font_size=26,
-        font=dict(size=18),
-        height=500
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )

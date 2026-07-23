@@ -317,8 +317,8 @@ with left:
     )
 
     fig.update_layout(
-        height=380,
-        margin=dict(t=20,b=20,l=20,r=20),
+        height=340,
+        margin=dict(t=20,b=20,l=50,r=20),
         annotations=[
             dict(
                 text=f"<b style='font-size:52px'>{completion_rate}%</b><br><span style='font-size:24px'>Completion</span>",

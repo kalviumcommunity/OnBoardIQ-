@@ -1,58 +1,72 @@
 import streamlit as st
+from backend.database.database_utils import fetch_data
 
 st.set_page_config(page_title="Onboarding", layout="wide")
 
 # -----------------------------
-# Dummy Data
+# Database Data
 # -----------------------------
-not_started = [
-    {
-        "department": "Engineering",
-        "name": "Alex Rivera",
-        "role": "Full Stack Engineer",
-        "manager": "David K.",
-        "progress": 0,
-        "status": "Joined Today"
-    },
-    {
-        "department": "Product",
-        "name": "Jamie Chen",
-        "role": "Product Manager",
-        "manager": "Sarah J.",
-        "progress": 0,
-        "status": "Starts in 2 Days"
-    }
-]
+not_started = fetch_data("""
+SELECT
+    d.dept_name AS department,
+    u.name,
+    e.designation AS role,
+    COALESCE(m.name,'Not Assigned') AS manager,
+    0 AS progress,
+    'Pending' AS status
+FROM employees e
+JOIN users u
+ON e.user_id = u.user_id
+JOIN departments d
+ON e.department_id = d.dept_id
+LEFT JOIN employees me
+ON e.manager_id = me.emp_id
+LEFT JOIN users m
+ON me.user_id = m.user_id
+WHERE e.onboarding_status='Pending';
+""").to_dict("records")
 
-in_progress = [
-    {
-        "department": "Marketing",
-        "name": "Marcus Thompson",
-        "role": "Growth Strategist",
-        "manager": "Elena V.",
-        "progress": 45,
-        "status": "Day 14"
-    },
-    {
-        "department": "Engineering",
-        "name": "Sophia Zhang",
-        "role": "Senior DevOps Engineer",
-        "manager": "Robert L.",
-        "progress": 78,
-        "status": "Day 42"
-    }
-]
 
-completed = [
-    {
-        "department": "Sales",
-        "name": "Jordan Miller",
-        "role": "Account Executive",
-        "manager": "Lisa W.",
-        "progress": 100,
-        "status": "Finished"
-    }
-]
+in_progress = fetch_data("""
+SELECT
+    d.dept_name AS department,
+    u.name,
+    e.designation AS role,
+    COALESCE(m.name,'Not Assigned') AS manager,
+    50 AS progress,
+    'In Progress' AS status
+FROM employees e
+JOIN users u
+ON e.user_id = u.user_id
+JOIN departments d
+ON e.department_id = d.dept_id
+LEFT JOIN employees me
+ON e.manager_id = me.emp_id
+LEFT JOIN users m
+ON me.user_id = m.user_id
+WHERE e.onboarding_status='In Progress';
+""").to_dict("records")
+
+
+completed = fetch_data("""
+SELECT
+    d.dept_name AS department,
+    u.name,
+    e.designation AS role,
+    COALESCE(m.name,'Not Assigned') AS manager,
+    100 AS progress,
+    'Completed' AS status
+FROM employees e
+JOIN users u
+ON e.user_id = u.user_id
+JOIN departments d
+ON e.department_id = d.dept_id
+LEFT JOIN employees me
+ON e.manager_id = me.emp_id
+LEFT JOIN users m
+ON me.user_id = m.user_id
+WHERE e.onboarding_status='Completed';
+""").to_dict("records")
 
 # -----------------------------
 # Header
@@ -69,6 +83,74 @@ with left:
 with right:
     st.write("")
     st.button("➕ New Onboarding", use_container_width=True)
+
+st.divider()
+
+# -----------------------------
+# DATABASE KPI
+# -----------------------------
+
+# Total Employees
+total_df = fetch_data("""
+SELECT COUNT(*) AS total_employees
+FROM employees;
+""")
+
+# Completed Onboarding
+completed_df = fetch_data("""
+SELECT COUNT(*) AS completed
+FROM employees
+WHERE onboarding_status = 'Completed';
+""")
+
+# In Progress
+progress_df = fetch_data("""
+SELECT COUNT(*) AS in_progress
+FROM employees
+WHERE onboarding_status = 'In Progress';
+""")
+
+# Pending
+pending_df = fetch_data("""
+SELECT COUNT(*) AS pending
+FROM employees
+WHERE onboarding_status = 'Pending';
+""")
+
+# Extract KPI values
+total_employees = int(total_df.iloc[0]["total_employees"])
+completed_count = int(completed_df.iloc[0]["completed"])
+in_progress_count = int(progress_df.iloc[0]["in_progress"])
+pending_count = int(pending_df.iloc[0]["pending"])
+# -----------------------------
+# KPI Cards
+# -----------------------------
+
+k1, k2, k3, k4 = st.columns(4)
+
+with k1:
+    st.metric(
+        "👥 Total Employees",
+        total_employees
+    )
+
+with k2:
+    st.metric(
+        "✅ Completed",
+        completed_count
+    )
+
+with k3:
+    st.metric(
+        "⏳ In Progress",
+        in_progress_count
+    )
+
+with k4:
+    st.metric(
+        "📝 Pending",
+        pending_count
+    )
 
 st.divider()
 

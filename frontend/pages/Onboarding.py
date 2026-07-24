@@ -1,189 +1,124 @@
 import streamlit as st
 
-st.markdown("""
-<style>
+st.set_page_config(page_title="Onboarding", layout="wide")
 
-/* ===== PAGE ===== */
-.stApp{
-    background-color:#F5F7FB;
-}
+# -----------------------------
+# Dummy Data
+# -----------------------------
+not_started = [
+    {
+        "department": "Engineering",
+        "name": "Alex Rivera",
+        "role": "Full Stack Engineer",
+        "manager": "David K.",
+        "progress": 0,
+        "status": "Joined Today"
+    },
+    {
+        "department": "Product",
+        "name": "Jamie Chen",
+        "role": "Product Manager",
+        "manager": "Sarah J.",
+        "progress": 0,
+        "status": "Starts in 2 Days"
+    }
+]
 
-/* Remove top padding */
-.block-container{
-    padding-top:1.5rem;
-    padding-left:2rem;
-    padding-right:2rem;
-}
+in_progress = [
+    {
+        "department": "Marketing",
+        "name": "Marcus Thompson",
+        "role": "Growth Strategist",
+        "manager": "Elena V.",
+        "progress": 45,
+        "status": "Day 14"
+    },
+    {
+        "department": "Engineering",
+        "name": "Sophia Zhang",
+        "role": "Senior DevOps Engineer",
+        "manager": "Robert L.",
+        "progress": 78,
+        "status": "Day 42"
+    }
+]
 
-/* ===== PAGE TITLE ===== */
-.page-title{
-    font-size:46px;
-    font-weight:700;
-    color:#111827;
-    margin-bottom:5px;
-}
+completed = [
+    {
+        "department": "Sales",
+        "name": "Jordan Miller",
+        "role": "Account Executive",
+        "manager": "Lisa W.",
+        "progress": 100,
+        "status": "Finished"
+    }
+]
 
-.page-subtitle{
-    font-size:18px;
-    color:#6B7280;
-    margin-bottom:30px;
-}
+# -----------------------------
+# Header
+# -----------------------------
 
-/* ===== SEARCH BOX ===== */
-input{
-    border-radius:12px !important;
-}
+left, right = st.columns([5,1])
 
-/* ===== BUTTON ===== */
-.stButton>button{
-    background:#2563EB;
-    color:white;
-    border:none;
-    border-radius:10px;
-    padding:10px 18px;
-    font-weight:600;
-    font-size:16px;
-    width:100%;
-}
+with left:
+    st.title("Onboarding Tracker")
+    st.caption(
+        "Track and manage the progress of new hires through their first 90 days."
+    )
 
-.stButton>button:hover{
-    background:#1D4ED8;
-    color:white;
-}
+with right:
+    st.write("")
+    st.button("➕ New Onboarding", use_container_width=True)
 
-/* ===== COLUMN BOX ===== */
-.column-box{
-    background:#EEF2F7;
-    border-radius:18px;
-    padding:18px;
-    min-height:700px;
-}
+st.divider()
 
-/* ===== COLUMN TITLE ===== */
-.column-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:13px;
-    font-weight:700;
-    color:#6B7280;
-    letter-spacing:1px;
-    margin-bottom:18px;
-    text-transform:uppercase;
-}
+# -----------------------------
+# Card
+# -----------------------------
 
-/* ===== COUNT BADGE ===== */
-.count-badge{
-    background:white;
-    border-radius:50%;
-    width:24px;
-    height:24px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:12px;
-    font-weight:700;
-    color:#374151;
-}
+def employee_card(emp):
 
-/* ===== EMPLOYEE CARD ===== */
-.employee-card{
-    background:white;
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    border:1px solid #E5E7EB;
-}
+    with st.container(border=True):
 
-/* ===== DEPARTMENT BADGE ===== */
-.badge{
-    display:inline-block;
-    padding:5px 10px;
-    border-radius:8px;
-    font-size:11px;
-    font-weight:700;
-    text-transform:uppercase;
-}
+        st.caption(emp["department"].upper())
 
-.badge-engineering{
-    background:#DBEAFE;
-    color:#2563EB;
-}
+        st.subheader(emp["name"])
 
-.badge-marketing{
-    background:#EDE9FE;
-    color:#7C3AED;
-}
+        st.write(emp["role"])
 
-.badge-sales{
-    background:#FDE68A;
-    color:#92400E;
-}
+        st.write("Progress")
 
-.badge-product{
-    background:#FEE2E2;
-    color:#DC2626;
-}
+        st.progress(emp["progress"]/100)
 
-/* ===== STATUS TEXT ===== */
-.status{
-    float:right;
-    font-size:12px;
-    color:#6B7280;
-}
+        st.write(f"**{emp['progress']}%**")
 
-/* ===== EMPLOYEE NAME ===== */
-.emp-name{
-    font-size:22px;
-    font-weight:700;
-    color:#111827;
-    margin-top:14px;
-}
+        st.write(f"👤 Manager: {emp['manager']}")
 
-/* ===== ROLE ===== */
-.role{
-    font-size:15px;
-    color:#6B7280;
-    margin-bottom:18px;
-}
+        st.caption(emp["status"])
 
-/* ===== PROGRESS ===== */
-.progress-label{
-    font-size:13px;
-    color:#6B7280;
-    margin-bottom:6px;
-}
+# -----------------------------
+# Columns
+# -----------------------------
 
-.progress-value{
-    float:right;
-    font-weight:700;
-    color:#111827;
-}
+c1, c2, c3 = st.columns(3)
 
-/* ===== FOOTER ===== */
-.manager{
-    border-top:1px solid #E5E7EB;
-    margin-top:18px;
-    padding-top:14px;
-    color:#6B7280;
-    font-size:13px;
-}
+with c1:
 
-/* ===== ARROW ===== */
-.arrow{
-    float:right;
-    font-size:20px;
-    color:#6B7280;
-}
+    st.markdown("### NOT STARTED")
 
-/* ===== HR ===== */
-hr{
-    border:none;
-    border-top:1px solid #E5E7EB;
-    margin-top:14px;
-    margin-bottom:14px;
-}
+    for emp in not_started:
+        employee_card(emp)
 
-</style>
-""", unsafe_allow_html=True)
+with c2:
+
+    st.markdown("### IN PROGRESS")
+
+    for emp in in_progress:
+        employee_card(emp)
+
+with c3:
+
+    st.markdown("### COMPLETED")
+
+    for emp in completed:
+        employee_card(emp)

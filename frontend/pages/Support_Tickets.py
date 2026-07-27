@@ -1,4 +1,5 @@
 import streamlit as st
+from backend.database.database_utils import fetch_data
 
 st.set_page_config(page_title="Support Tickets", layout="wide")
 
@@ -71,49 +72,66 @@ div[data-testid="stVerticalBlock"]>div:has(div.ticket-box){
 """, unsafe_allow_html=True)
 
 # ----------------------------
-# DUMMY DATA
+# DATABASE DATA
 # ----------------------------
 
-open_tickets = [
-    {
-        "priority":"HIGH",
-        "id":"TK-882",
-        "title":"VPN Access Denied",
-        "description":"Cannot connect to internal staging server from home network.",
-        "employee":"Alex Rivera",
-        "team":"Engineering"
-    },
-    {
-        "priority":"LOW",
-        "id":"TK-885",
-        "title":"Slack Channel Invite",
-        "description":"Requesting access to #proj-nexus and #team-design channels.",
-        "employee":"Jasmine Wu",
-        "team":"Design"
-    }
-]
+open_tickets = fetch_data("""
+SELECT
+    st.ticket_id AS id,
+    UPPER(st.priority) AS priority,
+    st.title,
+    st.description,
+    u.name AS employee,
+    d.dept_name AS team
+FROM support_tickets st
+JOIN employees e
+ON st.employee_id = e.emp_id
+JOIN users u
+ON e.user_id = u.user_id
+JOIN departments d
+ON e.department_id = d.dept_id
+WHERE st.status = 'Open';
+""").to_dict("records")
 
-progress_tickets = [
-    {
-        "priority":"MEDIUM",
-        "id":"TK-883",
-        "title":"Laptop Setup Delay",
-        "description":"MacBook delivery delayed by courier. Tracking status pending.",
-        "employee":"Marcus Thorne",
-        "team":"Operations"
-    }
-]
 
-resolved_tickets = [
-    {
-        "priority":"RESOLVED",
-        "id":"TK-884",
-        "title":"Adobe Suite License",
-        "description":"Creative Cloud access approved for asset production.",
-        "employee":"Sofia Chen",
-        "team":"Marketing"
-    }
-]
+progress_tickets = fetch_data("""
+SELECT
+    st.ticket_id AS id,
+    UPPER(st.priority) AS priority,
+    st.assigned_to_user_id,
+    st.title,
+    st.description,
+    u.name AS employee,
+    d.dept_name AS team
+FROM support_tickets st
+JOIN employees e
+ON st.employee_id = e.emp_id
+JOIN users u
+ON e.user_id = u.user_id
+JOIN departments d
+ON e.department_id = d.dept_id
+WHERE st.status='In Progress';
+""").to_dict("records")
+
+
+resolved_tickets = fetch_data("""
+SELECT
+    st.ticket_id AS id,
+    'RESOLVED' AS priority,
+    st.resolved_at,
+    st.title,
+    st.description,
+    u.name AS employee,
+    d.dept_name AS team
+FROM support_tickets st
+JOIN employees e
+ON st.employee_id = e.emp_id
+JOIN users u
+ON e.user_id = u.user_id
+JOIN departments d
+ON e.department_id = d.dept_id
+WHERE st.status IN ('Resolved','Closed');
+""").to_dict("records")
 
 # ----------------------------
 # HEADER
@@ -137,15 +155,71 @@ with right:
 st.divider()
 
 # ----------------------------
+# KPI
+# ----------------------------
+
+total_df = fetch_data("""
+SELECT COUNT(*) AS total
+FROM support_tickets;
+""")
+
+open_df = fetch_data("""
+SELECT COUNT(*) AS total
+FROM support_tickets
+WHERE status='Open';
+""")
+
+progress_df = fetch_data("""
+SELECT COUNT(*) AS total
+FROM support_tickets
+WHERE status='In Progress';
+""")
+
+resolved_df = fetch_data("""
+SELECT COUNT(*) AS total
+FROM support_tickets
+WHERE status IN ('Resolved','Closed');
+""")
+
+k1, k2, k3, k4 = st.columns(4)
+
+with k1:
+    st.metric(
+        "🎫 Total Tickets",
+        int(total_df.iloc[0]["total"])
+    )
+
+with k2:
+    st.metric(
+        "🟠 Open",
+        int(open_df.iloc[0]["total"])
+    )
+
+with k3:
+    st.metric(
+        "🟡 In Progress",
+        int(progress_df.iloc[0]["total"])
+    )
+
+with k4:
+    st.metric(
+        "🟢 Resolved",
+        int(resolved_df.iloc[0]["total"])
+    )
+
+st.divider()
+
+# ----------------------------
 # CARD
 # ----------------------------
 
-def ticket_card(ticket):
+def ticket_card(ticket,column_type):
 
     color = {
         "HIGH":"high",
         "MEDIUM":"medium",
         "LOW":"low",
+        "CRITICAL": "high",
         "RESOLVED":"resolved"
     }
 
@@ -160,8 +234,18 @@ def ticket_card(ticket):
             )
 
         with c2:
-            st.caption(ticket["id"])
+            if column_type == "open":
+                st.caption(f"#TK-{ticket['id']}")
 
+            elif column_type == "progress":
+                st.caption(f"User {ticket['assigned_to_user_id']}")
+
+            elif column_type == "resolved":
+
+                if ticket["resolved_at"] is not None:
+                    st.caption(str(ticket["resolved_at"]).split(" ")[0])
+                else:
+                    st.caption("-")
         st.markdown(
             f"<div class='title'>{ticket['title']}</div>",
             unsafe_allow_html=True
@@ -193,18 +277,18 @@ with col1:
     st.markdown("### 🟠 OPEN")
 
     for ticket in open_tickets:
-        ticket_card(ticket)
+        ticket_card(ticket,"open")
 
 with col2:
 
     st.markdown("### 🟡 IN PROGRESS")
 
     for ticket in progress_tickets:
-        ticket_card(ticket)
+        ticket_card(ticket,"progress")
 
 with col3:
 
     st.markdown("### 🟢 RESOLVED")
 
     for ticket in resolved_tickets:
-        ticket_card(ticket)
+        ticket_card(ticket,"resolved")

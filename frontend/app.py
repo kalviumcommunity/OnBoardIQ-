@@ -155,5 +155,4 @@ elif selected == "Analytics":
     runpy.run_path(os.path.join(PAGES_DIR, "Analytics.py"))
 
 elif selected == "Settings":
-    st.title("⚙️ Settings")
-    st.info("Coming Soon...")
+    runpy.run_path(os.path.join(PAGES_DIR, "Settings.py"))

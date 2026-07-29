@@ -190,12 +190,27 @@ with right:
             👤
             </div>
             """, unsafe_allow_html=True)
+                    width:100px;
+                    height:100px;
+                    border-radius:50%;
+                    background:#F1F5F9;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:48px;
+                    color:#64748B;
+                    margin:auto;
+                    border:3px solid #E5E7EB;
+                ">
+                👤
+                </div>
+                """, unsafe_allow_html=True)
+
 
             st.markdown(
                 "<center><b></b></center>",
                 unsafe_allow_html=True
-            )
-
+       
             st.markdown(
                 "<center><span style='color:#2563EB;font-size:13px;'>Remove photo</span></center>",
                 unsafe_allow_html=True

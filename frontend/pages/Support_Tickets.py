@@ -137,77 +137,127 @@ WHERE st.status IN ('Resolved','Closed');
 # HEADER
 # ----------------------------
 
-left,right = st.columns([5,1])
+# ----------------------------
+# HEADER
+# ----------------------------
 
-with left:
+title_col, search_col, dept_col, btn_col = st.columns([3,3,2,2])
 
+with title_col:
     st.title("Support Tickets")
+    st.caption("Manage and monitor employee technical hurdles during onboarding.")
 
-    st.caption(
-        "Manage and monitor employee technical hurdles during onboarding."
-    )
-
-with right:
-
+with search_col:
     st.write("")
-    st.button("➕ Create Ticket",use_container_width=True)
-
-st.divider()
-
-# ----------------------------
-# KPI
-# ----------------------------
-
-total_df = fetch_data("""
-SELECT COUNT(*) AS total
-FROM support_tickets;
-""")
-
-open_df = fetch_data("""
-SELECT COUNT(*) AS total
-FROM support_tickets
-WHERE status='Open';
-""")
-
-progress_df = fetch_data("""
-SELECT COUNT(*) AS total
-FROM support_tickets
-WHERE status='In Progress';
-""")
-
-resolved_df = fetch_data("""
-SELECT COUNT(*) AS total
-FROM support_tickets
-WHERE status IN ('Resolved','Closed');
-""")
-
-k1, k2, k3, k4 = st.columns(4)
-
-with k1:
-    st.metric(
-        "🎫 Total Tickets",
-        int(total_df.iloc[0]["total"])
+    search = st.text_input(
+        "",
+        placeholder="🔍 Search tickets...",
+        label_visibility="collapsed"
     )
 
-with k2:
-    st.metric(
-        "🟠 Open",
-        int(open_df.iloc[0]["total"])
+with dept_col:
+    st.write("")
+    department = st.selectbox(
+        "",
+        [
+            "All",
+            "HR",
+            "Engineering",
+            "Finance",
+            "Marketing",
+            "Operations",
+            "Product"
+        ],
+        label_visibility="collapsed"
     )
-
-with k3:
-    st.metric(
-        "🟡 In Progress",
-        int(progress_df.iloc[0]["total"])
-    )
-
-with k4:
-    st.metric(
-        "🟢 Resolved",
-        int(resolved_df.iloc[0]["total"])
+with btn_col:
+    st.write("")
+    st.button(
+        "➕ Create Ticket",
+        use_container_width=True
     )
 
 st.divider()
+# ----------------------------
+# FILTER TICKETS
+# ----------------------------
+
+def filter_tickets(tickets):
+    result = tickets
+
+    if department != "All":
+        result = [
+            t for t in result
+            if t["team"] == department
+        ]
+
+    if search:
+        result = [
+            t for t in result
+            if search.lower() in t["title"].lower()
+            or search.lower() in t["description"].lower()
+        ]
+
+    return result
+
+
+open_tickets = filter_tickets(open_tickets)
+progress_tickets = filter_tickets(progress_tickets)
+resolved_tickets = filter_tickets(resolved_tickets)
+# # ----------------------------
+# # KPI
+# # ----------------------------
+
+# total_df = fetch_data("""
+# SELECT COUNT(*) AS total
+# FROM support_tickets;
+# """)
+
+# open_df = fetch_data("""
+# SELECT COUNT(*) AS total
+# FROM support_tickets
+# WHERE status='Open';
+# """)
+
+# progress_df = fetch_data("""
+# SELECT COUNT(*) AS total
+# FROM support_tickets
+# WHERE status='In Progress';
+# """)
+
+# resolved_df = fetch_data("""
+# SELECT COUNT(*) AS total
+# FROM support_tickets
+# WHERE status IN ('Resolved','Closed');
+# """)
+
+# k1, k2, k3, k4 = st.columns(4)
+
+# with k1:
+#     st.metric(
+#         "🎫 Total Tickets",
+#         int(total_df.iloc[0]["total"])
+#     )
+
+# with k2:
+#     st.metric(
+#         "🟠 Open",
+#         int(open_df.iloc[0]["total"])
+#     )
+
+# with k3:
+#     st.metric(
+#         "🟡 In Progress",
+#         int(progress_df.iloc[0]["total"])
+#     )
+
+# with k4:
+#     st.metric(
+#         "🟢 Resolved",
+#         int(resolved_df.iloc[0]["total"])
+#     )
+
+# st.divider()
 
 # ----------------------------
 # CARD
@@ -274,21 +324,93 @@ col1,col2,col3 = st.columns(3)
 
 with col1:
 
-    st.markdown("### 🟠 OPEN")
+    st.markdown(f"""
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:15px;">
+    <div style="
+        width:7px;
+        height:7px;
+        border-radius:50%;
+        background:#F59E0B;
+    "></div>
+
+    <span style="
+        font-size:12px;
+        font-weight:700;
+        color:#111827;
+        letter-spacing:0.3px;
+    ">
+        OPEN
+    </span>
+
+    <span style="
+        background:#F3F4F6;
+        color:#6B7280;
+        font-size:11px;
+        font-weight:600;
+        padding:2px 7px;
+        border-radius:999px;
+    ">
+        {len(open_tickets)}
+    </span>
+    </div>
+    """, unsafe_allow_html=True)
 
     for ticket in open_tickets:
         ticket_card(ticket,"open")
 
 with col2:
 
-    st.markdown("### 🟡 IN PROGRESS")
+    st.markdown(f"""
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:15px;">
+
+    <div style="
+        width:7px;
+        height:7px;
+        border-radius:50%;
+        background:#2563EB;
+    "></div>
+
+    <span style="font-size:12px;font-weight:700;color:#111827;">
+        IN PROGRESS
+    </span>
+
+    <span style="
+        background:#F3F4F6;
+        color:#6B7280;
+        font-size:11px;
+        font-weight:600;
+        padding:2px 7px;
+        border-radius:999px;
+    ">
+        {len(progress_tickets)}
+    </span>
+    </div>
+    """, unsafe_allow_html=True)
 
     for ticket in progress_tickets:
         ticket_card(ticket,"progress")
 
 with col3:
 
-    st.markdown("### 🟢 RESOLVED")
+    c1, c2, c3 = st.columns([0.05, 0.35, 0.15])
+
+    with c1:
+        st.markdown(
+            "<div style='width:8px;height:8px;border-radius:50%;background:#10B981;margin-top:10px;'></div>",
+            unsafe_allow_html=True,
+        )
+
+    with c2:
+        st.markdown(
+            "<span style='font-size:12px;font-weight:700;'>RESOLVED</span>",
+            unsafe_allow_html=True,
+        )
+
+    with c3:
+        st.markdown(
+            f"<span style='background:#F3F4F6;padding:2px 8px;border-radius:20px;font-size:11px;color:#6B7280;'>{len(resolved_tickets)}</span>",
+            unsafe_allow_html=True,
+        )
 
     for ticket in resolved_tickets:
-        ticket_card(ticket,"resolved")
+        ticket_card(ticket, "resolved")

@@ -3,6 +3,8 @@ from streamlit_option_menu import option_menu
 import runpy
 import os
 
+# ---------------- PAGE CONFIG ----------------
+
 st.set_page_config(
     page_title="OnboardIQ",
     page_icon="🚀",
@@ -10,27 +12,95 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# ---------------- SESSION STATE ----------------
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if "show_signup" not in st.session_state:
+    st.session_state.show_signup = False
+
 BASE_DIR = os.path.dirname(__file__)
 PAGES_DIR = os.path.join(BASE_DIR, "pages")
+
+# ---------------- LOGIN / SIGNUP ----------------
+
+if not st.session_state.logged_in:
+
+    # ---------- LOGIN ----------
+    if not st.session_state.show_signup:
+
+        st.title("🚀 OnboardIQ")
+        st.subheader("Welcome Back")
+
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
+
+        if st.button("Login", use_container_width=True):
+            # Replace this later with authentication
+            st.session_state.logged_in = True
+            st.rerun()
+
+        col1, col2 = st.columns([4, 1])
+
+        with col1:
+            st.write("Don't have an account?")
+
+        with col2:
+            if st.button("Sign Up"):
+                st.session_state.show_signup = True
+                st.rerun()
+
+    # ---------- SIGNUP ----------
+    else:
+
+        st.title("🚀 OnboardIQ")
+        st.subheader("Create Your Account")
+
+        full_name = st.text_input("Full Name")
+        email = st.text_input("Email", key="signup_email")
+        password = st.text_input(
+            "Password",
+            type="password",
+            key="signup_password"
+        )
+        confirm = st.text_input(
+            "Confirm Password",
+            type="password",
+            key="confirm_password"
+        )
+
+        if st.button("Create Account", use_container_width=True):
+
+            if password != confirm:
+                st.error("Passwords do not match.")
+            elif full_name == "" or email == "" or password == "":
+                st.warning("Please fill all the fields.")
+            else:
+                st.success("Account created successfully!")
+                st.info("You can now login.")
+
+        if st.button("← Back to Login"):
+            st.session_state.show_signup = False
+            st.rerun()
+
+    st.stop()
 
 # ---------------- CSS ----------------
 
 st.markdown("""
 <style>
 
-/* Hide Streamlit default multipage navigation */
 [data-testid="stSidebarNav"]{
     display:none;
 }
 
-/* Sidebar padding */
 [data-testid="stSidebar"] > div:first-child{
     padding-top:20px;
     padding-left:10px;
     padding-right:10px;
 }
 
-/* Hide Streamlit menu/footer */
 #MainMenu{
     visibility:hidden;
 }
@@ -52,15 +122,15 @@ with st.sidebar:
 
     st.markdown("""
 <div style="padding:8px 0 20px 8px;">
-    <span style="
-        font-family: Inter, Arial, sans-serif;
-        font-size:32px;
-        font-weight:700;
-        color:#2563EB;
-        letter-spacing:-0.5px;
-    ">
-        OnboardIQ
-    </span>
+<span style="
+font-family:Inter,Arial,sans-serif;
+font-size:32px;
+font-weight:700;
+color:#2563EB;
+letter-spacing:-0.5px;
+">
+OnboardIQ
+</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -104,31 +174,20 @@ with st.sidebar:
             },
 
             "nav-link":{
-
                 "font-size":"18px",
                 "font-weight":"600",
                 "text-align":"left",
-
                 "padding":"10px 12px",
-
                 "margin":"6px 0",
-
                 "border-radius":"12px",
-
                 "color":"#111827",
-
                 "--hover-color":"#F3F4F6",
-
             },
 
             "nav-link-selected":{
-
                 "background-color":"#EAF2FF",
-
                 "color":"#2563EB",
-
                 "font-weight":"700",
-
             }
 
         }
@@ -155,5 +214,4 @@ elif selected == "Analytics":
     runpy.run_path(os.path.join(PAGES_DIR, "Analytics.py"))
 
 elif selected == "Settings":
-    st.title("⚙️ Settings")
-    st.info("Coming Soon...")
+    runpy.run_path(os.path.join(PAGES_DIR, "Settings.py"))

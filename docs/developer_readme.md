@@ -43,7 +43,7 @@ The project aims to help HR teams and management monitor onboarding progress, id
 ## Analytics
 - SQL
 - Power BI
-- DAX (Planned)
+- DAX
 
 ---
 
@@ -235,55 +235,77 @@ Status
 
 # Power BI Development
 
-## Sprint Progress
+## Current Progress
 
-### Completed
+### Database Integration
+
+Completed
 
 - Installed Power BI Desktop
 - Connected PostgreSQL database
 - Imported all project tables
-- Verified table relationships
-- Learned Power BI interface
-- Created first KPI Card
-- Created Completed Onboarding KPI using visual filters
-
-Current KPIs
-
-- Total Employees
-- Completed Onboarding
-
-Pending
-
-- Open Tickets
-- Average Resolution Time
-- Hiring Trend
-- Department Analytics
-- Tool Usage Dashboard
-- Slicers
-- Dashboard Formatting
-- DAX Measures
-
-Status
-
-🟡 In Progress
+- Verified relationships between tables
+- Understood the Power BI interface and data model
 
 ---
 
-# DAX Progress
+## KPI Dashboard
 
-Created
+Completed
+
+Created executive KPI cards for:
+
+- Total Employees
+- Completed Onboarding
+- Active Tickets
+- Average Resolution Time
+
+---
+
+## Visualizations
+
+Completed
+
+- Employees by Department (Clustered Bar Chart)
+- Onboarding Status Distribution (Donut Chart)
+
+---
+
+## DAX
+
+Implemented a calculated column:
 
 ```DAX
-Total Employees =
-DISTINCTCOUNT('public employees'[emp_id])
+Resolution Days =
+IF(
+    ISBLANK('public support_tickets'[resolved_at]),
+    BLANK(),
+    DATEDIFF(
+        'public support_tickets'[created_at],
+        'public support_tickets'[resolved_at],
+        DAY
+    )
+)
 ```
 
-Current approach
+Purpose
 
-Visual filters are being used while learning the Power BI interface.
+Calculates the number of days required to resolve a support ticket.
 
-Advanced DAX measures will be added after dashboard completion.
+---
 
+## Remaining Work
+
+- Hiring Trend
+- Support Ticket Category Analysis
+- Tool Usage Dashboard
+- Slicers
+- Dashboard Formatting
+- Advanced DAX Measures (if required)
+
+Status
+
+🟡 Approximately 65% Complete
 ---
 
 # Challenges Faced
@@ -319,10 +341,10 @@ Advanced DAX measures will be added after dashboard completion.
 | Module | Progress |
 |---------|----------|
 | Database | 100% |
-| Backend | 100% |
-| Streamlit Dashboard | 95% |
+| Backend | 90% |
+| Streamlit Dashboard | 85% |
 | SQL Analytics | 100% |
-| Power BI | 20% |
+| Power BI | 65% |
 | Documentation | In Progress |
 
 Overall Progress

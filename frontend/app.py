@@ -1,7 +1,17 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import runpy
+import sys
 import os
+
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from backend.auth.login import login_user
 
 # ---------------- PAGE CONFIG ----------------
 
@@ -16,6 +26,9 @@ st.set_page_config(
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+
+if "user" not in st.session_state:
+    st.session_state.user = None
 
 if "show_signup" not in st.session_state:
     st.session_state.show_signup = False
@@ -37,9 +50,20 @@ if not st.session_state.logged_in:
         password = st.text_input("Password", type="password")
 
         if st.button("Login", use_container_width=True):
-            # Replace this later with authentication
-            st.session_state.logged_in = True
-            st.rerun()
+
+            user = login_user(email, password)
+
+            if user:
+
+                st.session_state.logged_in = True
+                st.session_state.user = user
+
+                st.success("Login Successful")
+                st.rerun()
+
+            else:
+
+                st.error("Invalid email or password")
 
         col1, col2 = st.columns([4, 1])
 
@@ -119,6 +143,12 @@ header{
 # ---------------- SIDEBAR ----------------
 
 with st.sidebar:
+    if st.session_state.user:
+
+        st.write(f"👋 Welcome, {st.session_state.user['name']}")
+        st.caption(st.session_state.user["role"])
+
+        st.divider()
 
     st.markdown("""
 <div style="padding:8px 0 20px 8px;">
@@ -192,6 +222,13 @@ OnboardIQ
 
         }
     )
+    st.divider()
+
+    if st.button("Logout", use_container_width=True):
+
+        st.session_state.logged_in = False
+        st.session_state.user = None
+        st.rerun()
 
 # ---------------- PAGE ROUTING ----------------
 

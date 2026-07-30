@@ -1,5 +1,5 @@
-from db_connection import get_connection
-from auth.auth import verify_password
+from backend.db_connection import get_connection
+from backend.auth.auth import verify_password
 
 
 def login_user(email, password):

@@ -237,6 +237,18 @@ Completed
 
 ---
 
+Added New Visualizations
+Support Tickets by Category
+Created a clustered column chart to visualize support tickets grouped by category.
+Configured Category on the X-axis and Count of Ticket ID on the Y-axis.
+Added an appropriate chart title for better readability.
+Tool Usage Distribution
+Created a donut chart to visualize employee tool adoption.
+Used Tool Name as the legend and Count of Usage ID as the value.
+Enabled percentage and count labels for easier interpretation.
+
+---
+
 # DAX
 
 Created Calculated Column

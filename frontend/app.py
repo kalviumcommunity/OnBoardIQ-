@@ -12,6 +12,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from backend.auth.login import login_user
+from backend.auth.signup import register_user
 
 # ---------------- PAGE CONFIG ----------------
 
@@ -101,8 +102,26 @@ if not st.session_state.logged_in:
             elif full_name == "" or email == "" or password == "":
                 st.warning("Please fill all the fields.")
             else:
-                st.success("Account created successfully!")
-                st.info("You can now login.")
+
+                success, message = register_user(
+                    full_name,
+                    email,
+                    password
+                )
+
+                if success:
+
+                    st.success(message)
+
+                    st.session_state.show_signup = False
+
+                    st.info("Please login.")
+
+                    st.rerun()
+
+                else:
+
+                    st.error(message)
 
         if st.button("← Back to Login"):
             st.session_state.show_signup = False

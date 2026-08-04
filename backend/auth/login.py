@@ -14,7 +14,8 @@ def login_user(email, password):
         email,
         password_hash,
         role,
-        is_active
+        is_active,
+        last_login
     FROM users
     WHERE email = %s;
     """
@@ -22,22 +23,47 @@ def login_user(email, password):
     cursor.execute(query, (email,))
     user = cursor.fetchone()
 
-    cursor.close()
-    conn.close()
 
     if user is None:
+        cursor.close()
+        conn.close()
         return None
 
     if not user[5]:
+        cursor.close()
+        conn.close()
         return None
 
     if verify_password(password, user[3]):
+
+        cursor.execute(
+            """
+            UPDATE users
+            SET last_login = CURRENT_TIMESTAMP
+            WHERE user_id = %s;
+            """,
+            (user[0],)
+        )
+
+        conn.commit()
+
+        cursor.execute(query, (email,))
+        user = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
         return {
             "user_id": user[0],
             "name": user[1],
             "email": user[2],
             "role": user[4],
-            "is_active": user[5]
+            "is_active": user[5],
+            "last_login": user[6]
+
         }
+
+    cursor.close()
+    conn.close()
 
     return None

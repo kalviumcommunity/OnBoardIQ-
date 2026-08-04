@@ -166,7 +166,9 @@ with st.sidebar:
 
         st.write(f"👋 Welcome, {st.session_state.user['name']}")
         st.caption(st.session_state.user["role"])
-
+        st.caption(
+        f"Last Login: {st.session_state.user['last_login']}"
+        )
         st.divider()
 
     st.markdown("""

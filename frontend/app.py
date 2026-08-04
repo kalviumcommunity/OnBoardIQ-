@@ -144,6 +144,16 @@ st.markdown("""
     padding-right:10px;
 }
 
+/* Hide the collapse/expand arrow */
+[data-testid="stSidebarCollapseButton"]{
+    display:none;
+}
+
+/* Older Streamlit versions */
+[data-testid="collapsedControl"]{
+    display:none;
+}
+
 #MainMenu{
     visibility:hidden;
 }

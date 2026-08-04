@@ -129,11 +129,11 @@ tbody tr td{
 left, right = st.columns([5,1])
 
 with left:
-    st.title("Onboarding Insights")
+    st.title("DASHBOARD")
     st.markdown(
         """
         <p class="subtitle">
-        Welcome back, Sarah. Here's what's happening with your new hires today.
+        Here's what's happening with your new hires today.
         </p>
         """,
         unsafe_allow_html=True

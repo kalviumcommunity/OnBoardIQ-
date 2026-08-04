@@ -172,15 +172,6 @@ header{
 # ---------------- SIDEBAR ----------------
 
 with st.sidebar:
-    if st.session_state.user:
-
-        st.write(f"👋 Welcome, {st.session_state.user['name']}")
-        st.caption(st.session_state.user["role"])
-        st.caption(
-        f"Last Login: {st.session_state.user['last_login']}"
-        )
-        st.divider()
-
     st.markdown("""
 <div style="padding:8px 0 20px 8px;">
 <span style="
@@ -196,6 +187,12 @@ OnboardIQ
 """, unsafe_allow_html=True)
 
     st.divider()
+    if st.session_state.user:
+
+        st.write(f"👋 Welcome, {st.session_state.user['name']}")
+        st.caption(st.session_state.user["role"])
+        st.divider()
+
 
     selected = option_menu(
         menu_title=None,
@@ -254,6 +251,11 @@ OnboardIQ
         }
     )
     st.divider()
+    if st.session_state.user:
+        st.caption(
+        f"Last Login:\n{st.session_state.user['last_login']}"
+    )
+    st.write("")
 
     if st.button("Logout", use_container_width=True):
 

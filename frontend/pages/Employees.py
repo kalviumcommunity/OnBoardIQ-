@@ -11,67 +11,105 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* Main app */
-html, body, [class*="css"]{
-    font-size:18px;
+/* ---------------- Background ---------------- */
+
+.stApp{
+    background:#F5F7FB;
 }
 
-/* Page Title */
+.block-container{
+    padding-top:1rem;
+    padding-left:2rem;
+    padding-right:2rem;
+    max-width:1400px;
+}
+
+/* ---------------- Headers ---------------- */
+
 h1{
+    color:#111827;
     font-size:48px !important;
     font-weight:700 !important;
+    margin-bottom:0px;
 }
 
-/* Section Titles */
 h2,h3{
-    font-size:32px !important;
-    font-weight:600 !important;
+    color:#111827;
+    font-weight:600;
 }
 
-/* Paragraphs */
 p{
-    font-size:20px !important;
+    color:#6B7280;
+    font-size:18px;
+}
+label{
+    font-size:18px !important;
+    font-weight:600 !important;
+    color:#374151 !important;
 }
 
-/* Metric Values */
-[data-testid="stMetricValue"]{
-    font-size:42px !important;
-    font-weight:bold;
+/* ---------------- KPI Cards ---------------- */
+
+[data-testid="stMetric"]{
+    background:#FFFFFF;
+    border:1px solid #E5E7EB;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 18px rgba(15,23,42,.08);
+    transition:0.3s;
 }
 
-/* Metric Labels */
+[data-testid="stMetric"]:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(15,23,42,.12);
+}
+
 [data-testid="stMetricLabel"]{
-    font-size:18px !important;
+    color:#6B7280;
+    font-size:16px !important;
 }
 
-/* DataFrame */
+[data-testid="stMetricValue"]{
+    color:#1E3A8A;
+    font-size:38px !important;
+    font-weight:700;
+}
+
+/* ---------------- DataFrame ---------------- */
+
 [data-testid="stDataFrame"]{
-    font-size:18px !important;
+    background:white;
+    border-radius:16px;
+    border:1px solid #E5E7EB;
+    overflow:hidden;
 }
 
-/* Table Header */
-thead tr th{
-    font-size:18px !important;
-}
+/* ---------------- Inputs ---------------- */
 
-/* Table Body */
-tbody tr td{
-    font-size:17px !important;
-}
-
-/* Sidebar */
-section[data-testid="stSidebar"] *{
-    font-size:18px !important;
-}
-
-/* Search Box */
 input{
-    font-size:18px !important;
+    border-radius:12px !important;
 }
 
-/* Selectbox */
 [data-baseweb="select"]{
-    font-size:18px !important;
+    border-radius:12px;
+}
+
+/* ---------------- Buttons ---------------- */
+
+.stButton>button{
+    border-radius:10px;
+    border:none;
+    background:#2563EB;
+    color:white;
+}
+
+/* ---------------- Horizontal Line ---------------- */
+
+hr{
+    margin-top:25px;
+    margin-bottom:25px;
+    border:0;
+    border-top:1px solid #E5E7EB;
 }
 
 </style>
@@ -101,37 +139,67 @@ ON me.user_id = m.user_id;
 
 # ---------------- Header ----------------
 
-st.markdown("<h1>👥 Employee Directory</h1>", unsafe_allow_html=True)
-st.markdown(
-    "<p>View and search employee information.</p>",
-    unsafe_allow_html=True
-)
+title1, title2 = st.columns([5, 1])
 
-st.divider()
+st.markdown("""
+<h1 style="
+font-size:56px;
+font-weight:800;
+color:#173F73;
+margin-bottom:0;
+">
+👥 Employee Directory
+</h1>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<p style="
+font-size:22px;
+color:#4B5563;
+margin-top:8px;
+margin-bottom:28px;
+">
+Manage, search and monitor employee information across the organization.
+</p>
+""", unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 # ---------------- Filters ----------------
 
-col1, col2 = st.columns([2, 1])
+f1, f2, f3 = st.columns([3, 1.5, 1.5])
 
-with col1:
-    search = st.text_input("🔍 Search Employee")
+with f1:
+    search = st.text_input(
+        "Search Employee",
+        placeholder="Search by employee name..."
+    )
 
-with col2:
+with f2:
     departments = ["All"] + sorted(
         employees["department"].dropna().unique().tolist()
-
     )
 
     selected_department = st.selectbox(
-        "🏢 Filter by Department",
+        "Department",
         departments
+    )
+
+with f3:
+    statuses = ["All"] + sorted(
+        employees["onboarding_status"].dropna().unique().tolist()
+    )
+
+    selected_status = st.selectbox(
+        "Status",
+        statuses
     )
 
 filtered = employees.copy()
 
 if search:
     filtered = filtered[
-        filtered["name"].str.contains(search, case=False)
+        filtered["name"].str.contains(search, case=False, na=False)
     ]
 
 if selected_department != "All":
@@ -139,7 +207,12 @@ if selected_department != "All":
         filtered["department"] == selected_department
     ]
 
-st.divider()
+if selected_status != "All":
+    filtered = filtered[
+        filtered["onboarding_status"] == selected_status
+    ]
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 # ---------------- DATABASE ----------------
 
@@ -193,13 +266,24 @@ st.divider()
 
 # ---------------- Employee Table ----------------
 
-st.subheader("📋 Employee List")
+st.markdown("## Employee Directory")
 
-st.dataframe(
-    filtered,
+display_df = filtered.rename(columns={
+    "emp_id": "Employee ID",
+    "name": "Employee Name",
+    "department": "Department",
+    "manager": "Manager",
+    "designation": "Designation",
+    "employment_type": "Employment Type",
+    "onboarding_status": "Onboarding Status"
+})
+
+st.data_editor(
+    display_df,
     use_container_width=True,
     hide_index=True,
-    height=450
+    disabled=True,
+    height=500
 )
 
-st.divider()
+st.caption(f"Showing {len(display_df)} employee(s)")
